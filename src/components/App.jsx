@@ -1,9 +1,15 @@
+import { Provider } from 'react-redux';
+
 import Phonebook from './Phonebook/Phonebook';
+
+import store from 'redux/store';
 
 export const App = () => {
   return (
-    <div>
-      <Phonebook />
-    </div>
+    <Provider store={store}>
+      <div>
+        <Phonebook />
+      </div>
+    </Provider>
   );
 };

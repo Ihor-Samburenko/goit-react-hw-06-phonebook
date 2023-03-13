@@ -22,16 +22,14 @@ const Phonebook = () => {
   const dispatch = useDispatch();
 
   const handleFilterChange = e => {
-    const action = setFilter(e.target.value);
-    dispatch(action);
+    dispatch(setFilter(e.target.value));
   };
 
   const onAddContact = ({ name, number }) => {
     if (isDublicate({ name, number })) {
       return alert(`${name} is already exist`);
     }
-    const action = addContact({ name, number });
-    dispatch(action);
+    dispatch(addContact({ name, number }));
   };
 
   const isDublicate = ({ name, number }) => {
@@ -46,15 +44,14 @@ const Phonebook = () => {
   };
 
   const onDelete = id => {
-    const action = deleteContact(id);
-    dispatch(action);
+    dispatch(deleteContact(id));
   };
 
   return (
     <div className={css.wrapper}>
       <h2 className={css.title}>Phonebook</h2>
       <div className={css.block}>
-        <ContactsBlock title="Phonebook"></ContactsBlock>
+        <ContactsBlock />
         <PhonebookForm onSubmit={onAddContact} />
         <ContactsBlock title="Contacts">
           <input

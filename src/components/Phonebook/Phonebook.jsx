@@ -6,8 +6,8 @@ import PhonebookForm from 'components/PhonebookForm/PhonebookForm';
 
 import { getContacts } from 'redux/contacts/contacts-selectors';
 import { getFilteredContacts } from 'redux/contacts/contacts-selectors';
-import { addContact, deleteContact } from 'redux/contacts/contacts-actions';
-import { setFilter } from 'redux/filter/filter-actions';
+import { addContacts, deleteContacts } from 'redux/contacts/contacts-slice';
+import { setFilter } from 'redux/filter/filter-slice';
 import { getFilter } from 'redux/filter/filter-selectors';
 
 import css from '../Phonebook/Phonebook.module.css';
@@ -29,7 +29,7 @@ const Phonebook = () => {
     if (isDublicate({ name, number })) {
       return alert(`${name} is already exist`);
     }
-    dispatch(addContact({ name, number }));
+    dispatch(addContacts({ name, number }));
   };
 
   const isDublicate = ({ name, number }) => {
@@ -44,14 +44,14 @@ const Phonebook = () => {
   };
 
   const onDelete = id => {
-    dispatch(deleteContact(id));
+    dispatch(deleteContacts(id));
   };
 
   return (
     <div className={css.wrapper}>
       <h2 className={css.title}>Phonebook</h2>
       <div className={css.block}>
-        <ContactsBlock />
+        <ContactsBlock title="Phonebook" />
         <PhonebookForm onSubmit={onAddContact} />
         <ContactsBlock title="Contacts">
           <input
